@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Website</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo img {
+            width: 120px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff7f50;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 75vh;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+
+            /* Flexbox to center the items */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: #fff;
+        }
+
+
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 10px 0 20px;
+        }
+
+        .hero-button {
+            background: #ff7f50;
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.3rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-button:hover {
+            background: #333;
+            transform: scale(1.05);
+            transition: 0.3s ease;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.4s ease;
+        }
+
+        .item img:hover {
+            transform: scale(1.07);
+        }
+
+        .item h3 {
+            margin-top: 10px;
+            font-size: 1.6rem;
+        }
+
+        .item p {
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        /* ABOUT */
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.4s ease;
+        }
+
+        .team-member img:hover {
+            transform: scale(1.1);
+        }
+
+        /* CONTACT */
+        .contact-info ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .contact-info li {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        form button {
+            background: #ff7f50;
+            padding: 10px 30px;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        form button:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        /* 🔥 ANIMATIONS ADDED */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide {
+            animation: slideUp 1.2s ease forwards;
+        }
+
+        .animate-zoom {
+            animation: zoomIn 1s ease forwards;
+        }
+
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Nav */
+        @media(max-width:768px) {
+            nav ul {
+                display: none;
+            }
+
+            header {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="animate-fade">
+        <div class="logo">
+            <img src="images/logo.jpg" alt="logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#hotels">Hotels</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+        <img src="images/hero.jpg" alt="">
+        <div class="hero-content animate-slide">
+
+            <h1>Welcome to Our Travel Website</h1>
+            <p>Discover amazing destinations and book your next trip with us</p>
+            <a href="#destinations" class="hero-button">Book Now</a>
+
+        </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section id="destinations" class="reveal">
+        <h2 class="animate-fade">Popular Destinations</h2>
+
+        <div class="grid">
+            <div class="item animate-zoom">
+                <img src="images/destination-1.jpg">
+                <h3>New York City</h3>
+                <p>The city that never sleeps...</p>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/destination-2.jpg">
+                <h3>Paris</h3>
+                <p>Romantic evenings & stunning sights.</p>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/destination-3.jpg">
+                <h3>Tokyo</h3>
+                <p>A blend of futuristic and traditional charm.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOTELS -->
+    <section id="hotels" class="reveal">
+        <h2 class="animate-fade">Featured Hotels</h2>
+
+        <div class="grid">
+            <div class="item animate-zoom">
+                <img src="images/hotel-1.jpg">
+                <h3>The Ritz Carlton</h3>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/hotel-2.jpg">
+                <h3>The Four Seasons</h3>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/hotel-3.jpg">
+                <h3>The Waldorf Astoria</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section id="activities" class="reveal">
+        <h2 class="animate-fade">Featured Activities</h2>
+
+        <div class="grid">
+            <div class="item animate-zoom">
+                <img src="images/activity-1.jpg">
+                <h3>Hiking the Grand Canyon</h3>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/activity-2.jpg">
+                <h3>Whale Watching in Alaska</h3>
+            </div>
+
+            <div class="item animate-zoom">
+                <img src="images/activity-3.jpg">
+                <h3>Snorkeling in Hawaii</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+        <h2 class="animate-fade">About Us</h2>
+        <p>We provide the best travel experiences and custom itineraries tailored to your preferences.</p>
+
+        <div class="team">
+            <div class="team-member animate-zoom">
+                <img src="img3.jpg">
+                <h3>FAYAZ KHAN</h3>
+                <p>CEO</p>
+            </div>
+
+            <div class="team-member animate-zoom">
+                <img src="img1.jpg">
+                <h3>SANJAY CHOUDHARY</h3>
+                <p>Head of Operations</p>
+            </div>
+
+            <div class="team-member animate-zoom">
+                <img src="img2.jpg">
+                <h3>PULKIT SINGH BISHT</h3>
+                <p>Teach Lead</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+        <h2 class="animate-fade">Contact Us</h2>
+
+        <div class="contact-info">
+            <ul>
+                <li><i class="fa-solid fa-location-arrow"></i> 123 Main St, USA</li>
+                <li><i class="fa-solid fa-envelope"></i> info@travelcompany.com</li>
+                <li><i class="fa-solid fa-phone"></i> 555-123-4567</li>
+            </ul>
+        </div>
+
+        <form>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea rows="5" placeholder="Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="animate-fade">
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>© 2024 Travel Website. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 🔥 Scroll Reveal Script -->
+    <script>
+        const reveals = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        });
+
+        reveals.forEach(r => observer.observe(r));
+    </script>
+
+</body>
+
+</html>
